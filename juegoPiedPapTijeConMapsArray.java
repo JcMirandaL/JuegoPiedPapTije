@@ -31,16 +31,17 @@ public class juegoPiedPapTijeConMapsArray {
             switch (opcion) {
                 case 1:
                     //llamo al metodo jugar
-                    //jugar();
+                    jugar();
                     //se sale del switch
                     break;
                 case 2: 
                     //llamo al metodo y q haga lo q tenga q hacer
-                    //mostrarEstadisticas();
+                    mostrarEstadisticas();
                     //se sale de switch
                     break;
                 case 3:
-                    System.out.println("¡MUCHAS GRACIAS! Te esperamos pronto.");    
+                    System.out.println("¡MUCHAS GRACIAS! Te esperamos pronto.");  
+                    System.out.println("");  
                     //se sale de switch
                     break;
                 default:
