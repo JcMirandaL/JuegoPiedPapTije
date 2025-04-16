@@ -357,5 +357,36 @@ public class juegoPiedPapTijeConMapsArray {
     //cierre del metodo registrarDatosJuego()    
     }
 
+    //metodo para escribir el archivo
+    public static void escribriArchivoJuego(String linea){
+
+        //intente
+        try {
+            //declaro e instancio en rutaEstadist(dnd esta guardada la ruta)
+            File archivo = new File(rutaEstadist);
+            
+            //valido si e archivo no existe
+            if (!archivo.exists()) {
+                //creelo, por eso ese comando .create
+                archivo.createNewFile();
+            }
+
+            BufferedWriter bw = new BufferedWriter(new FileWriter(rutaEstadist, true));
+            //escribe la linea
+            bw.write(linea);
+            //salto de linea para q al escrib una linea salte a la siguiente 
+            bw.newLine();
+            //cierre del buffer
+            bw.close();
+   
+        //sino pudo con lo del try (cuando se usa e.getMessage se le pone IO a la Exception, Sino, solo Exception e)  
+        } catch (IOException e) {
+            //imprima msj de error 
+            System.out.println(e.getMessage());
+        }
+
+    //cierre del metodo escribriArchivoJuego()
+    }
+
 //cierre del algoritmo
 }
