@@ -1,3 +1,4 @@
+import java.lang.classfile.instruction.DiscontinuedInstruction.RetInstruction;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -90,6 +91,12 @@ public class juegoPiedPapTijeConMapsArray {
 
             //llamo al metodo para saber si hay un ganador
             gano = validarGane(jugador, computadora);
+
+            //valido para que entre solo si no hubo ganador
+            if (gano.equals("")) {
+                //si cumple llamo al metodo y que haga lo que tiene q hacer
+                empate = validarEmpate(jugador, computadora, gano);
+            }
 
             //imprimo pregunta
             System.out.println("¿Desea volver a jugar? (Digite 1 para si ó 2 para no");
@@ -200,12 +207,37 @@ public class juegoPiedPapTijeConMapsArray {
             
         }
 
-        //devuelve lo que tenga la variable
+        //devuelve lo que tiene la variable que seria ""
         return ganador;
 
     //cierre del metodo validarGane()    
     }
 
+    //metodo para validar si hubo empate
+    public static boolean validarEmpate(String jugador, String computadora, String gano){
+
+        //declaro e inicio variable
+        boolean empataron = true;
+
+        //valido las 3 posibles combinaciones para un empate
+        if (jugador.equals("PIEDRA") && computadora.equals("PIEDRA")
+        || jugador.equals("PAPEL") && computadora.equals("PAPEL")
+        || jugador.equals("TIJERA") && computadora.equals("TIJERA")) {
+
+            //si cumple devuelva la variable empataron que esta en true
+            return empataron;
+            
+        //si no    
+        } else {
+        
+            //actualizo la variable
+            empataron = false;
+            //devuelve la variable actualizada
+            return empataron;
+        }
+
+    //cierre del metodo validarEmpate()    
+    }
 
 //cierre del algoritmo
 }
