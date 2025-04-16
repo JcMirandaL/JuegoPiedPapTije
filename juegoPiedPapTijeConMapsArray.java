@@ -1,3 +1,7 @@
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.lang.classfile.instruction.DiscontinuedInstruction.RetInstruction;
 import java.util.Random;
 import java.util.Scanner;
@@ -297,7 +301,7 @@ public class juegoPiedPapTijeConMapsArray {
         } else {
             //bucle para validar si valor es mas pequeño que cantCaracteres (repite mientras cantCarct es menor)
             while (valor.length() < cantCaracteres) {      
-                 
+
                 //Que concatene "" (vacios) al resto
                 valor = valor.concat(" ");
 
@@ -309,6 +313,49 @@ public class juegoPiedPapTijeConMapsArray {
     //cierre del metodo darFormatoConcatenarEspaciosBlanco()
     }
 
+    //metodo para ir registrando los datos y definir el tamaño de cada valor, en parametros llamo lo que quiero registrar
+    public static void registrarDatosJuego(String nombre, String cedula, String gano, boolean empate, String jugador, String computadora, String totPartidas){
+
+        String linea = "", ganeJugador = "", ganeComputadora = "", empataron = "";
+
+        //llamo al metodo y lo recibo en el valor correspondiente para definir el tamaño de carateres que tendra
+        nombre = darFormatoConcatenarEspaciosBlanco(nombre, 15);
+        cedula = darFormatoConcatenarEspaciosBlanco(cedula, 14);
+
+        //valido quien gano
+        if (gano.equals(jugador)) {
+
+            //si gano jugador actualice estos con cada valor asignado
+            ganeJugador = "1";
+            ganeComputadora = "0";
+            empataron = "0";
+            totPartidas = "1";
+            
+        }else if (gano.equals(computadora)) {
+
+            //si gano computadora actualice estos con cada valor asignado
+            ganeJugador = "0";
+            ganeComputadora = "1";
+            empataron = "0";
+            totPartidas = "1";
+
+        }else {
+
+            //si nade gano pongales esto
+            ganeJugador = "0";
+            ganeComputadora = "0";
+            empataron = "1";
+            totPartidas = "1";
+
+        }
+        //conformo la linea y le doy posicion a los datos en cada linea
+        linea = nombre + cedula + ganeJugador + ganeComputadora + empataron + totPartidas;
+
+        //llamo al metodo escribir para ir alamcenando datos registrados
+        escribriArchivoJuego(linea);
+
+    //cierre del metodo registrarDatosJuego()    
+    }
 
 //cierre del algoritmo
 }
