@@ -88,6 +88,9 @@ public class juegoPiedPapTijeConMapsArray {
             //llamo al metodo para ver la jugada de la compu
             computadora = jugadaComputadora();
 
+            //llamo al metodo para saber si hay un ganador
+            gano = validarGane(jugador, computadora);
+
             //imprimo pregunta
             System.out.println("¿Desea volver a jugar? (Digite 1 para si ó 2 para no");
             //leo respuest
@@ -171,6 +174,38 @@ public class juegoPiedPapTijeConMapsArray {
 
     //cierre del metodo jugadaComputadora  
     }
+
+    //metodo para alidar quien gano
+    //en parametros llamo a jugador y computadora que es dnd estan almacenadas las jugadas de cd uno
+    public static String validarGane(String jugador, String computadora){
+
+        //declaro e inicio variable
+        String ganador = "";
+
+        //validacion para saber el ganador, en un lado el jugador y sus posibles combinaciones
+        if (jugador.equals("PIEDRA") && computadora.equals("TIJERA") 
+        || jugador.equals("PAPEL") && computadora.equals("PIEDRA")
+        || jugador.equals("TIJERA") && computadora.equals("PAPEL")) {
+            
+            //si se cumple culaquiera de esas 3 combinaciones actualizo la variable ganador
+            ganador = jugador;
+
+        //Y en este otro lado la computadora y sus posibles combinaciones    
+        } else if (computadora.equals("PIEDRA") && jugador.equals("TIJERA") 
+        || computadora.equals("PAPEL") && jugador.equals("PIEDRA")
+        || computadora.equals("TIJERA") && jugador.equals("PAPEL")) {
+            
+            //Sino, si se cumple culaquiera de esas 3 combinaciones actualizo la variable ganador
+            ganador = computadora;
+            
+        }
+
+        //devuelve lo que tenga la variable
+        return ganador;
+
+    //cierre del metodo validarGane()    
+    }
+
 
 //cierre del algoritmo
 }
