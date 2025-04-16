@@ -427,6 +427,44 @@ public class juegoPiedPapTijeConMapsArray {
     //cierre de metodo leerArchivoJuego()    
     }
 
+    //metodo para calcular la cantidad de filas 
+    public static int calcularCantFilas(ArrayList<String> line){
+
+        //aqui clono la lista para que los null no afecten a la lista original
+        @SuppressWarnings("unchecked")
+        ArrayList<String> lineas = (ArrayList<String>) line.clone();
+
+        //declaro variabl y la defino con el total de lineas (con el array se usa size en vez de length)
+        int cant = lineas.size();
+
+        //bucle para recorrer las filas hasta la -1 xq en el primer recorrido ya he comparado la ultima fila
+        for (int i = 0; i < lineas.size() - 1; i++) {
+            //si lineas en la posicion i no es null que haga.
+            //.get es obtener
+            if (lineas.get(i) != null) {
+
+                //bucle para recorrer las filas desde la posicion i+1 e ir comparando la posicion 0 con la 1, luego compara con el resto y asi en cada vuelta
+                for (int j = i + 1; j < lineas.size(); j++) {
+                    //si lineas en la posicion j no es null que haga.
+                    if (lineas.get(j) != null) {
+
+                        //si i y j no son null hace, y compara losindices de i y j desde el caracter 0 hasta el 14 de la linea que es dnd esta la ced 
+                        if (lineas.get(i).substring(0,14).equals(lineas.get(j).substring(0,14))){
+                            //si son equals(iguales) le resta 1 a cant que es dnd esta guardado la cantidad total de filas
+                            cant--;
+                            //Y tambien le pone un null al indice j
+                            lineas.set(j, null);
+                        }
+                    }
+                        
+                }
+            }
+        } 
+        //devuelve la cantidad de filas sin cedulas repetidas
+        return cant;
+    //cierre del metodo calcularCantFilas()    
+    }
+
     //metodo para desmenusar los datos de la linea y meterlos en una matrz
     public static String[][] obtenerDatosJuego(ArrayList<String> lineas){
 
@@ -522,43 +560,28 @@ public class juegoPiedPapTijeConMapsArray {
     //cierre del metodo obtenerDatosJuego()     
     }
 
-    //metodo para calcular la cantidad de filas sin cedulas repetidas
-    public static int calcularCantFilas(ArrayList<String> line){
+    //metodo para validar cedulas repetidas, si no seria un jugador nuevo
+    public static int validarExisteJugador(String[][] matrzDatosJuego, String cedula){
 
-        //aqui clono la lista para que los null no afecten a la lista original
-        @SuppressWarnings("unchecked")
-        ArrayList<String> lineas = (ArrayList<String>) line.clone();
+        //solo un bucle xq solo ocupo recorrer las filas en la posicion cedula
+        for (int i = 0; i < matrzDatosJuego.length; i++) {
 
-        //declaro variabl y la defino con el total de lineas (con el array se usa size en vez de length)
-        int cant = lineas.size();
+            //si matrz en la posicion i colum 1 es diferente de null 
+            if (matrzDatosJuego[i][1] != null) {
+                //si matrz en la posicion i colum 1 es igual a lo que tiene cedula
+                if (matrzDatosJuego[i][1].trim().equals(cedula.trim())) {
 
-        //bucle para recorrer las filas hasta la -1 xq en el primer recorrido ya he comparado la ultima fila
-        for (int i = 0; i < lineas.size() - 1; i++) {
-            //si lineas en la posicion i no es null que haga.
-            //.get es obtener
-            if (lineas.get(i) != null) {
-
-                //bucle para recorrer las filas desde la posicion i+1 e ir comparando la posicion 0 con la 1, luego compara con el resto y asi en cada vuelta
-                for (int j = i + 1; j < lineas.size(); j++) {
-                    //si lineas en la posicion j no es null que haga.
-                    if (lineas.get(j) != null) {
-
-                        //si i y j no son null hace, y compara losindices de i y j desde el caracter 0 hasta el 14 de la linea que es dnd esta la ced 
-                        if (lineas.get(i).substring(0,14).equals(lineas.get(j).substring(0,14))){
-                            //si son equals(iguales) le resta 1 a cant que es dnd esta guardado la cantidad total de filas
-                            cant--;
-                            //Y tambien le pone un null al indice j
-                            lineas.set(j, null);
-                        }
-                    }
-                        
+                    //que devuelva la posicion dnd lo encontro(i)
+                    return i;
                 }
             }
-        } 
-        //devuelve la cantidad de filas sin cedulas repetidas
-        return cant;
-    //cierre del metodo calcularCantFilas()    
+        }
+        //Si no que devuelva -1 que seria como vacio(jugador nuevo)
+        return -1;
+
+    //cierre del metodo validarExisteJugador()
     }
+
 
 //cierre del algoritmo
 }
