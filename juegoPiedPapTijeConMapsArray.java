@@ -56,6 +56,45 @@ public class juegoPiedPapTijeConMapsArray {
     //cierre del main
     }
 
+    public static void jugar(){
+
+        //declaro e inicializo variables
+        String nombre = "", cedula = "";
+        int volverJugar = 0;
+        boolean empate = false;
+
+        //declaro variables para recibir metodos
+        String jugador, computadora, gano;
+
+        //solicito datos entrada
+        System.out.println("Digite su NOMBRE");
+        //los leo (.toUpper = todo mayuscula, .trim = sin espacios)
+        nombre = scan.next().toUpperCase().trim();
+
+        //solicito datos entrada
+        System.out.println("Digite su CÉDULA");
+        //los leo (.toUpper = todo mayuscula, .trim = sin espacios)
+        cedula = scan.next().toUpperCase().trim();
+        //salto linea
+        System.out.println("");
+
+        //IMPRIMO MSJ
+        System.out.println("¡EMPEZO EL JUEGO!");
+
+        do {
+            //llamo al metodo para ver la jugada del jugador
+            jugador = jugadaJugador();
+
+            //imprimo pregunta
+            System.out.println("¿Desea volver a jugar? (Digite 1 para si ó 2 para no");
+            //leo respuest
+            volverJugar = scan.nextInt();
+
+        //si volverJugar es igual a 1, repite
+        } while (volverJugar == 1);
+
+    //cierre del metodod jugar()    
+    }
 
 //cierre del algoritmo
 }
