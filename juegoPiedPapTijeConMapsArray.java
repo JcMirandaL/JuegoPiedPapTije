@@ -1,8 +1,11 @@
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.classfile.instruction.DiscontinuedInstruction.RetInstruction;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -386,6 +389,42 @@ public class juegoPiedPapTijeConMapsArray {
         }
 
     //cierre del metodo escribriArchivoJuego()
+    }
+
+    /*-------------------------------------------Metodos para leer el archivo y luego mostrar estadisticas------------------------------------------------ */
+
+    //metodo par leer el archivo que se escribio
+    public static ArrayList<String> leerArchivoJuego(String rutaEstadist){
+
+        //declaro ua lista dinamica
+        ArrayList<String> lista = new ArrayList<>();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(rutaEstadist))){
+
+            //declaro e inicio variable
+            String lineas = "";
+
+            //bucle para ir leyendo cada linea de la lista
+            while ((lineas = br.readLine()) != null) {
+
+                //si lineas es diferente de vacio lea
+                if (lineas.trim() != "") {
+                    lista.add(lineas);
+                }
+            }
+        //cierre del buffer
+        br.close();
+            
+        //si no pudo hacer lo del catch
+        } catch (Exception e) {
+
+            //entonces imprima es msj
+            System.out.println("ERROR: no se pudo leer el archivo");
+            
+        }
+
+        return lista;
+    //cierre de metodo leerArchivoJuego()    
     }
 
 //cierre del algoritmo
