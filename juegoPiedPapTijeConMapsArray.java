@@ -14,7 +14,7 @@ public class juegoPiedPapTijeConMapsArray {
     //declaro global el scanner, el random y la variable ruta para poder usar en cualquier metodo
     static Scanner scan = new Scanner(System.in);
     static Random random = new Random();
-    static String rutaEstadist = "C:/Users/julio/OneDrive/Documents/ProyectosJavaProgrEstruc2025VisualStudio/juegPiedPapTije/juegoPiedPapTijeConMapsArray.java";
+    static String rutaEstadist = "C:/arcivosPlanos/estadistJuegoPiedra";
 
     public static void main(String[] args) {
         //declaro e inicio variable
@@ -44,7 +44,7 @@ public class juegoPiedPapTijeConMapsArray {
                     break;
                 case 2: 
                     //llamo al metodo y q haga lo q tenga q hacer
-                    mostrarEstadisticas();
+                    imprimirEstadisticas();
                     //se sale de switch
                     break;
                 case 3:
@@ -67,7 +67,7 @@ public class juegoPiedPapTijeConMapsArray {
     public static void jugar(){
 
         //declaro e inicializo variables
-        String nombre = "", cedula = "";
+        String nombre = "", cedula = "", totPartidas = "";
         int volverJugar = 0;
         boolean empate = false;
 
@@ -108,10 +108,25 @@ public class juegoPiedPapTijeConMapsArray {
             //llamo al metodo mostrar resultados y q haga lo que tenga q hacer
             mostrarResultados(jugador, computadora, gano, empate,nombre);
 
-            //imprimo pregunta
-            System.out.println("¿Desea volver a jugar? (Digite 1 para si ó 2 para no");
-            //leo respuest
-            volverJugar = scan.nextInt();
+            //llamo al metodo para registrar datos
+            registrarDatosJuego(nombre, cedula, gano, empate, jugador, computadora, totPartidas);
+
+            //bucle para obligar a digitar solo 1 o 2
+            do {
+                //imprimo pregunta
+                System.out.println("¿Desea volver a jugar? (Digite 1 para si ó 2 para no");
+                //leo respuest
+                volverJugar = scan.nextInt();
+
+                //valido si es mayor a 2 o menor a 1 entre al if
+                if (volverJugar > 2 || volverJugar < 1) {
+
+                    //Y imprima esto
+                    System.out.println("Digite una opcion valida 1 ó 2");
+                }
+
+            //si opcion es difrente de 2 o 1, repite    
+            } while (volverJugar > 2 || volverJugar < 1);
 
         //si volverJugar es igual a 1, repite
         } while (volverJugar == 1);
