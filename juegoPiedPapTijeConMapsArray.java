@@ -427,5 +427,100 @@ public class juegoPiedPapTijeConMapsArray {
     //cierre de metodo leerArchivoJuego()    
     }
 
+    //metodo para desmenusar los datos de la linea y meterlos en una matrz
+    public static String[][] obtenerDatosJuego(ArrayList<String> lineas){
+
+        //llamo al metodo calcularCantFilas y lo recibo en cantFil
+        int cantFil = calcularCantFilas(lineas);
+
+        //declaro e instancio la matrz dnd almacenare los datos
+        String[][] matrzDatosJuego = new String[cantFil][6];
+
+        //declaro e inicializo variable que va ir aumentando las filas nuevas
+        int filaMatrz = 0;
+
+        //bucle para recorrer las lineas, se usa valor para acceder al array.    : lineas (en esa posicion)
+        for (String valor : lineas) {
+            //defino variables y las inicio en la cantidad de caracteres para ir descomponiendo cada fila en varios datos, para eso el subString
+            String nombre = valor.substring(0,15).trim();
+
+            //del 15 al 29 posicion de cedula en la linea
+            String cedula = valor.substring(15,29).trim();
+
+            //caracteres del 29 al 32 posicion ganeJugador en la linea
+            String ganeJugador = valor.substring(29,30).trim();
+
+            //caracteres del 32 al 34 posicion ganeComputadora en la linea
+            String ganeComputadora = valor.substring(30,31).trim();
+
+            //caracteres del 34 al 36 posicion empataron en la linea
+            String empataron = valor.substring(31,32).trim();
+
+            //caracteres del 36 al 38 posicion totPartidas en la linea
+            String totPartidas = valor.substring(32,33).trim();
+            
+
+            //llamo al metodod validarExisteJugador y lo recibo en posicion
+            int posicion = validarExisteJugador(matrzDatosJuego, cedula);
+
+            //valido si el valor retornado del metodo validarExisteJugador es -1 (jugador nuevo)entonces haga
+            if(posicion == -1){
+                //asigno las filas x cad vuelta +1 y asigno manual las columnas con su dato almacenado en cada posicion
+                matrzDatosJuego[filaMatrz][0] = nombre;
+                matrzDatosJuego[filaMatrz][1] = cedula;
+                matrzDatosJuego[filaMatrz][2] = ganeJugador;
+                matrzDatosJuego[filaMatrz][3] = ganeComputadora;
+                matrzDatosJuego[filaMatrz][4] = empataron;
+                matrzDatosJuego[filaMatrz][5] = totPartidas;
+                //aqui aumenta la fila x vuelta +1    
+                filaMatrz++;
+
+            //si no, osea si es i lo que retorno (cedula repetida)   
+            }else{
+                //declaro e inicio variable en 0, que va amentar los ganes o empates y totPartidas, segun sea el caso 
+                int conteo = 0, conteo2 = 0;
+
+                //validaciones para ver quien gano y asi ir aumentado contador
+                if (ganeJugador.equals("1")) {
+
+                    //aqui paso la matriz a int 
+                    conteo = Integer.parseInt(matrzDatosJuego[posicion][2].trim());
+                    //y aqui paso el conteo a string y le suma 1 x cada vuelta que entre
+                    matrzDatosJuego[posicion][2] = Integer.toString(++conteo); 
+
+                }else if (ganeComputadora.equals("1")){
+
+                    //aqui paso la matriz a int
+                    conteo = Integer.parseInt(matrzDatosJuego[posicion][3].trim());
+                    //y aqui paso el conteo a string y le suma 1 x cada vuelta que entre
+                    matrzDatosJuego[posicion][3] = Integer.toString(++conteo);
+
+                }else if (empataron.equals("1")){
+
+                    //aqui paso la matriz a int
+                    conteo = Integer.parseInt(matrzDatosJuego[posicion][4].trim());
+                    //y aqui paso el conteo a string y le suma 1 x cada vuelta que entre
+                    matrzDatosJuego[posicion][4] = Integer.toString(++conteo);
+
+                }
+                
+                //esta otra validacion para aumentar el # de partidas 
+                if (totPartidas.equals("1")){
+
+                    //aqui paso la matriz a int
+                    conteo2 = Integer.parseInt(matrzDatosJuego[posicion][5].trim());
+                    //y aqui paso el conteo a string y le suma 1 x cada vuelta que entre
+                    matrzDatosJuego[posicion][5] = Integer.toString(++conteo2);
+                }
+            }
+
+        }    
+       
+        //devuelve a matrz con los datos en su posicion
+        return matrzDatosJuego;
+
+    //cierre del metodo obtenerDatosJuego()     
+    }
+
 //cierre del algoritmo
 }
