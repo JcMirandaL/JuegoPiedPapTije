@@ -239,5 +239,41 @@ public class juegoPiedPapTijeConMapsArray {
     //cierre del metodo validarEmpate()    
     }
 
+    //metodo para mostrar results
+    public static void mostrarResultados(String jugador, String computadora, String gano, boolean empate, String nombre){
+
+        //salto
+        System.err.println("");
+        //imprimo msjs
+        System.out.println("Piedra, Papel ó Tijera 1, 2, 3");
+        System.out.println(nombre+ " escogio "+jugador);
+        System.out.println("La computadora sacó "+computadora);
+
+        //valido quien gano o si hubo empate para imprimir lo q corresponda
+        if (gano.equals(jugador)) {
+
+            //si entra aqui imprima esto
+            System.out.println("¡FELICITACIONES! Le ganaste a la computadora");
+            System.out.println("------------------------------------------------------");
+
+        }else if (gano.equals(computadora)){
+
+            //Sino, si entra aqui imprima esto otro
+            System.out.println("!MALA SUERTE¡ La computadora te gano");
+            System.out.println("------------------------------------------------------");
+
+        }else if (empate == true){
+
+            //Sino, si entra aqui imprima este otro
+            System.out.println("!SORPRENDENTE¡ Ha ocurrido un empate");
+            System.out.println("------------------------------------------------------");
+        }
+
+    //cierre del metodo mostrarResultados()    
+    }
+
+
+    /*------------------------------ Metodos para escribir archivo ------------------------------------- */
+
 //cierre del algoritmo
 }
