@@ -98,6 +98,9 @@ public class juegoPiedPapTijeConMapsArray {
                 empate = validarEmpate(jugador, computadora, gano);
             }
 
+            //llamo al metodo mostrar resultados y q haga lo que tenga q hacer
+            mostrarResultados(jugador, computadora, gano, empate,nombre);
+
             //imprimo pregunta
             System.out.println("¿Desea volver a jugar? (Digite 1 para si ó 2 para no");
             //leo respuest
@@ -274,6 +277,38 @@ public class juegoPiedPapTijeConMapsArray {
 
 
     /*------------------------------ Metodos para escribir archivo ------------------------------------- */
+
+    //metodo para dar formato a las lineas y rellenar con "" los valores, si son mas pequeños que la cantCaracteres definidos
+    public static String darFormatoConcatenarEspaciosBlanco(String valor, int cantCaracteres){
+
+        //si valor es null 
+        if (valor == null) {
+            //pongale "" (vacio)
+            valor = "";    
+        }
+
+        //si el tamaño de valor es mayor a la cantCaracteres
+        if (valor.length() >= cantCaracteres) {
+
+            //Entonces retorne el valor desde 0 a la cantCaracteres (recorta el resto)
+            return valor.substring(0, cantCaracteres);
+
+        //Sino    
+        } else {
+            //bucle para validar si valor es mas pequeño que cantCaracteres (repite mientras cantCarct es menor)
+            while (valor.length() < cantCaracteres) {      
+                 
+                //Que concatene "" (vacios) al resto
+                valor = valor.concat(" ");
+
+            }
+            //devuelve el valor formateado
+            return valor;
+        }
+
+    //cierre del metodo darFormatoConcatenarEspaciosBlanco()
+    }
+
 
 //cierre del algoritmo
 }
