@@ -522,5 +522,43 @@ public class juegoPiedPapTijeConMapsArray {
     //cierre del metodo obtenerDatosJuego()     
     }
 
+    //metodo para calcular la cantidad de filas sin cedulas repetidas
+    public static int calcularCantFilas(ArrayList<String> line){
+
+        //aqui clono la lista para que los null no afecten a la lista original
+        @SuppressWarnings("unchecked")
+        ArrayList<String> lineas = (ArrayList<String>) line.clone();
+
+        //declaro variabl y la defino con el total de lineas (con el array se usa size en vez de length)
+        int cant = lineas.size();
+
+        //bucle para recorrer las filas hasta la -1 xq en el primer recorrido ya he comparado la ultima fila
+        for (int i = 0; i < lineas.size() - 1; i++) {
+            //si lineas en la posicion i no es null que haga.
+            //.get es obtener
+            if (lineas.get(i) != null) {
+
+                //bucle para recorrer las filas desde la posicion i+1 e ir comparando la posicion 0 con la 1, luego compara con el resto y asi en cada vuelta
+                for (int j = i + 1; j < lineas.size(); j++) {
+                    //si lineas en la posicion j no es null que haga.
+                    if (lineas.get(j) != null) {
+
+                        //si i y j no son null hace, y compara losindices de i y j desde el caracter 0 hasta el 14 de la linea que es dnd esta la ced 
+                        if (lineas.get(i).substring(0,14).equals(lineas.get(j).substring(0,14))){
+                            //si son equals(iguales) le resta 1 a cant que es dnd esta guardado la cantidad total de filas
+                            cant--;
+                            //Y tambien le pone un null al indice j
+                            lineas.set(j, null);
+                        }
+                    }
+                        
+                }
+            }
+        } 
+        //devuelve la cantidad de filas sin cedulas repetidas
+        return cant;
+    //cierre del metodo calcularCantFilas()    
+    }
+
 //cierre del algoritmo
 }
