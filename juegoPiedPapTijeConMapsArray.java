@@ -582,6 +582,32 @@ public class juegoPiedPapTijeConMapsArray {
     //cierre del metodo validarExisteJugador()
     }
 
+    //metodo para imprimir estadisticas
+    public static void imprimirEstadisticas(){
+
+        //llamo al metodo leerArchivo con la ruta de estadisticas y lo recibo en [] lineas
+        ArrayList<String> lineas = leerArchivoJuego(rutaEstadist);
+
+        //llamo al metodo obtenerDatosJuego y lo recibo en [][] matrzDatsJue
+        String[][] matrzDatsJue = obtenerDatosJuego(lineas);
+
+        //salto
+        System.out.println("");
+        //imprimo msj
+        System.out.println("<==========================> ESTADISTICAS DEL JUEGO <=============================>");
+        //salto
+        System.out.println("");
+
+        //bucle para recorrer las filas de la matrz
+        for (int i = 0; i < matrzDatsJue.length; i++) {
+            
+            //imprimo resultds
+            System.out.println("Total Ganes de " +matrzDatsJue[i][0]+ ": " +matrzDatsJue[i][2]+ " | Total Ganes Computadora: " +matrzDatsJue[i][3]);
+            System.out.println("Total Empates: "+matrzDatsJue[i][4]);
+            System.out.println("Total de Partidas " +matrzDatsJue[i][5]);
+            System.out.println("------------------------------------------------------");
+        }
+    }    
 
 //cierre del algoritmo
 }
