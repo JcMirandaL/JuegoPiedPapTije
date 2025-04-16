@@ -85,6 +85,9 @@ public class juegoPiedPapTijeConMapsArray {
             //llamo al metodo para ver la jugada del jugador
             jugador = jugadaJugador();
 
+            //llamo al metodo para ver la jugada de la compu
+            computadora = jugadaComputadora();
+
             //imprimo pregunta
             System.out.println("¿Desea volver a jugar? (Digite 1 para si ó 2 para no");
             //leo respuest
@@ -96,6 +99,7 @@ public class juegoPiedPapTijeConMapsArray {
     //cierre del metodod jugar()    
     }
 
+    //metodo para validar la jugada del jugador
     public static String jugadaJugador(){
 
         //declaro e inicializo variables
@@ -136,6 +140,36 @@ public class juegoPiedPapTijeConMapsArray {
         }
 
     //cierre del metodo jugadaJugador()  
+    }
+
+    //metodo para validar la jugada de la compu
+    public static String jugadaComputadora(){
+
+        //declaro variable y la inicio en un random de 1 a 3
+        int opc2 = random.nextInt(3) + 1;
+        //declaro e inicio variable
+        String jugadCompu = "";
+
+        //validacion para ver que salio en el ramdom
+        if (opc2 == 1) {
+
+            //si cumple, actualizo variable jugadCompu
+            jugadCompu = "PIEDRA";
+
+        } else if (opc2 == 2){
+            
+            //Sino, si cumple este, actualizo variable jugadCompu
+            jugadCompu = "PAPEL";
+        }else {
+
+            //Si no actualizo aqui la variable jugadCompu
+            jugadCompu = "TIJERA";    
+        }
+
+        //devuelva lo que guardo en jugadCompu
+        return jugadCompu.toUpperCase().trim();
+
+    //cierre del metodo jugadaComputadora  
     }
 
 //cierre del algoritmo
