@@ -96,5 +96,47 @@ public class juegoPiedPapTijeConMapsArray {
     //cierre del metodod jugar()    
     }
 
+    public static String jugadaJugador(){
+
+        //declaro e inicializo variables
+        int opc = 0;
+
+        //bucle para obligar a digitar una opcion valida 1, 2 ó 3
+        do {
+            //imprimo pregunta
+            System.out.println("¿Que quiere usar? Digite la opcion 1, 2 ó 3");
+            System.out.println("1.Piedra, 2.Papel, 3.Tijera");
+            //leo resp
+            opc = scan.nextInt();
+            //salto
+            System.out.println("");
+
+            //VALIDO PARA MOSTRAR MSJS
+            if (opc > 3 || opc < 1) {
+                //si cumple imprima
+                System.out.println("ERROR: Digite una opcion valida. (1, 2 ó 3)");    
+                System.out.println("¡VUELVA A INTENTAR!");
+                //salto
+                System.out.println("");
+            }
+
+        //si la opc es mayor a 3 o menr a 1, repite    
+        } while (opc > 3 || opc < 1);
+
+        //validacion para retornar segun opcion digitada
+        if (opc == 1) {
+            
+            return "PIEDRA";
+        } else if (opc == 2){
+            
+            return "PAPEL";
+        }else {
+
+            return "TIJERA";
+        }
+
+    //cierre del metodo jugadaJugador()  
+    }
+
 //cierre del algoritmo
 }
